@@ -1,31 +1,68 @@
 const db = require("./connection");
+const table = "users"
 
+module.exports = initUsers = (app) => {
+    //GET ALL USERS
+    app.get('/api/user/all', async (req, res) => {
+        try {
+            let sql = "SELECT * from " + table;
+            db.query(sql, (err, result) => {
+                if(err) {
+                    console.log(err);
+                    res.sendStatus(500);
+                }
+                else {
+                    res.json(result);
+                }
+            });
+        }
+        catch(e) {
+            console.log(e);
+            res.sendStatus(500);
+        }
+    })
 
-module.exports = getAllUsers = () => {
-    return new Promise((resolve, reject) => {
-        let sql = "SELECT * FROM users";
-        db.query(sql, (err, result) => {
-            if(err) {
-                return reject(err);
+    //GET USER
+    app.post('/api/user/get', async (req, res) => {
+    
+        let uuid = req.body.uuid;
+        let email = req.body.email;
+        let password = req.body.password;
+    
+        try {
+            let sql;
+
+            //GET BY UUID
+            if(uuid !== undefined){
+                sql = "SELECT * FROM " + table +" WHERE uuid=?";
+                db.query(sql,[uuid], (err, result) => {
+                    if(err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    }
+                    else {
+                        res.json(result);
+                    }
+                });
             }
-            else {
-                resolve(result);
+            
+            //GET BY EMAIL & PASSOWRD
+            else{
+                sql = "SELECT * FROM " + table + " WHERE email=? AND password=?";
+                db.query(sql,[email,password], (err, result) => {
+                    if(err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                    }
+                    else {
+                        res.json(result);
+                    }
+                });
             }
-        });
+        }
+        catch(e) {
+            console.log(e);
+            res.sendStatus(500);
+        }
     })
 }
-
-module.exports =  getUser = (email, password) => {
-    return new Promise((resolve, reject) => {
-        let sql = "SELECT * FROM users WHERE email=? AND password=?";
-        db.query(sql,[email,password], (err, result) => {
-            if(err) {
-                return reject(err);
-            }
-            else {
-                resolve(result);
-            }
-        });
-    })
-}
-
