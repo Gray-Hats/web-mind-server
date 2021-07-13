@@ -1,5 +1,4 @@
 const db = require("./connection");
-const table = "subjects";
 const baseUri = "/api/subject";
 
 module.exports = initSubject = (app) => {
@@ -7,7 +6,7 @@ module.exports = initSubject = (app) => {
     //GET ALL
     app.get(baseUri + '/all', async (req, res) => {
         try {
-            let sql = "SELECT * from " + table;
+            let sql = "SELECT * from subjects ORDER BY title";
 
             db.query(sql, (err, result) => {
                 if(err) {
@@ -28,7 +27,7 @@ module.exports = initSubject = (app) => {
     //GET COUNT
     app.get(baseUri + '/count', async (req, res) => {
         try {
-            let sql = "SELECT COUNT(*) as count from " + table;
+            let sql = "SELECT COUNT(uuid) as count from subjects";
 
             db.query(sql, (err, result) => {
                 if(err) {
@@ -52,7 +51,7 @@ module.exports = initSubject = (app) => {
         let uuid = req.body.uuid;
 
         try {
-            let sql = "SELECT * FROM " + table + " WHERE uuid=?";
+            let sql = "SELECT * FROM subjects WHERE uuid=?";
 
             db.query(sql,[uuid], (err, result) => {
                 if(err) {
@@ -79,7 +78,7 @@ module.exports = initSubject = (app) => {
         let description = req.body.description;
 
         try {
-            let sql = "INSERT INTO " + table + " VALUES(?,?,?,?)";
+            let sql = "INSERT INTO subjects VALUES(?,?,?,?)";
 
             db.query(sql,[uuid, code, title, description], (err, result) => {
                 if(err) {
@@ -106,7 +105,7 @@ module.exports = initSubject = (app) => {
         let description = req.body.description;
     
         try {
-            let sql = "UPDATE " + table + " SET code=?, title=?, description=? WHERE (uuid=?)";
+            let sql = "UPDATE subjects SET code=?, title=?, description=? WHERE (uuid=?)";
 
             db.query(sql,[code, title, description,uuid], (err, result) => {
                 if(err) {
@@ -130,7 +129,7 @@ module.exports = initSubject = (app) => {
         let uuid = req.body.uuid;
     
         try {
-            let sql = "DELETE FROM " + table + " WHERE uuid=? ";
+            let sql = "DELETE FROM subjects WHERE uuid=? ";
 
             db.query(sql,[uuid], (err, result) => {
                 if(err) {

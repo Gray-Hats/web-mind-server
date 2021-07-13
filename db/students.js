@@ -1,5 +1,4 @@
 const db = require("./connection");
-const table = "students";
 const baseUri = "/api/student";
 
 module.exports = initStudent = (app) => {
@@ -8,7 +7,7 @@ module.exports = initStudent = (app) => {
     app.get(baseUri + '/all', async (req, res) => {
         try {
             
-            let sql = "SELECT * from " + table;
+            let sql = "SELECT * from students ORDER BY lname, fname, mname";
 
             db.query(sql, (err, result) => {
                 if(err) {
@@ -29,7 +28,7 @@ module.exports = initStudent = (app) => {
     //GET COUNT
     app.get(baseUri + '/count', async (req, res) => {
         try {
-            let sql = "SELECT COUNT(*) as count from " + table;
+            let sql = "SELECT COUNT(uuid) as count from students";
 
             db.query(sql, (err, result) => {
                 if(err) {
@@ -49,11 +48,10 @@ module.exports = initStudent = (app) => {
 
     //GET SPECIFIC STUDENT
     app.post(baseUri + '/get', async (req, res) => {
-    
-        let uuid = req.body.uuid;
-    
         try {
-            let sql = "SELECT * FROM " + table + " WHERE uuid=?";
+            let uuid = req.body.uuid;
+
+            let sql = "SELECT * FROM students WHERE uuid=?";
             
             db.query(sql,[uuid], (err, result) => {
                 if(err) {
@@ -74,14 +72,15 @@ module.exports = initStudent = (app) => {
     //ADD
     app.post(baseUri + '/add', async (req, res) => {
     
-        let uuid = req.body.uuid;
-        let studNo = req.body.studNo;
-        let lname = req.body.lname;
-        let fname = req.body.fname;
-        let mname = req.body.mname;
-    
         try {
-            let sql = "INSERT INTO " + table + " VALUES(?,?,?,?,?)";
+                
+            let uuid = req.body.uuid;
+            let studNo = req.body.studNo;
+            let lname = req.body.lname;
+            let fname = req.body.fname;
+            let mname = req.body.mname;
+            
+            let sql = "INSERT INTO students VALUES(?,?,?,?,?)";
             
             db.query(sql, [uuid,studNo,lname,fname,mname], (err, result) => {
                 if(err) {
@@ -108,7 +107,7 @@ module.exports = initStudent = (app) => {
         let mname = req.body.mname;
     
         try {
-            let sql = "UPDATE  " + table + " SET student_no=?, lname=?, fname=?, mname=? WHERE uuid=?";
+            let sql = "UPDATE  students SET student_no=?, lname=?, fname=?, mname=? WHERE uuid=?";
             
             db.query(sql, [studNo,lname,fname,mname,uuid], (err, result) => {
                 if(err) {
@@ -131,7 +130,7 @@ module.exports = initStudent = (app) => {
         let uuid = req.body.uuid;
     
         try {
-            let sql = "DELETE FROM " + table + " WHERE uuid=? ";
+            let sql = "DELETE FROM students WHERE uuid=? ";
 
             db.query(sql,[uuid], (err, result) => {
                 if(err) {

@@ -1,11 +1,10 @@
 const db = require("./connection");
-const table = "users"
 
 module.exports = initUsers = (app) => {
     //GET ALL USERS
     app.get('/api/user/all', async (req, res) => {
         try {
-            let sql = "SELECT * from " + table;
+            let sql = "SELECT * from users";
             db.query(sql, (err, result) => {
                 if(err) {
                     console.log(err);
@@ -34,7 +33,7 @@ module.exports = initUsers = (app) => {
 
             //GET BY UUID
             if(uuid !== undefined){
-                sql = "SELECT * FROM " + table +" WHERE uuid=?";
+                sql = "SELECT * FROM users WHERE uuid=?";
                 db.query(sql,[uuid], (err, result) => {
                     if(err) {
                         console.log(err);
@@ -48,7 +47,7 @@ module.exports = initUsers = (app) => {
             
             //GET BY EMAIL & PASSOWRD
             else{
-                sql = "SELECT * FROM " + table + " WHERE email=? AND password=?";
+                sql = "SELECT * FROM users WHERE email=? AND password=?";
                 db.query(sql,[email,password], (err, result) => {
                     if(err) {
                         console.log(err);
