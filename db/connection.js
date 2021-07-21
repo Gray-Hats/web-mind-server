@@ -1,11 +1,7 @@
 const mysqli = require('mysql');
+const config = require('../config');
 
-const db = mysqli.createConnection({
-    user: 'root',
-    host: 'localhost',
-    password: 'password',
-    database: 'web_mind_master',
-});
+const db = mysqli.createConnection(config.mysqli);
 
 db.connect(err => {
     if(err) console.log(err);
