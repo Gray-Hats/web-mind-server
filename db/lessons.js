@@ -25,7 +25,7 @@ module.exports = initLesson = (app) => {
     });
 
     //Get Audios and Videos
-    app.get(baseUri + '/media', async (req, res) => {
+    app.get(baseUri + '/medias', async (req, res) => {
         try{
             let sql = "SELECT lessons.*, subjects.title as subject_title FROM lessons INNER JOIN subjects ON lessons.subject=subjects.uuid WHERE type='audio' OR type='video' ORDER BY date_uploaded";
 

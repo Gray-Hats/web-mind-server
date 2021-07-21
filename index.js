@@ -17,7 +17,7 @@ app.use(express.json());
 * PORT
 */
 app.listen(config.port, () => {
-    console.log("Server is running...");
+    console.log("Webmind server is running...");
 })
 
 initUsers(app);
