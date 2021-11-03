@@ -69,6 +69,30 @@ module.exports = initStudent = (app) => {
         }
     });
 
+    //GET SPECIFIC STUDENT BY NO & PASS
+    app.post(baseUri + '/check', async (req, res) => {
+        try {
+            let studNo = req.body.studNo;
+            let password = req.body.password;
+
+            let sql = "SELECT * FROM students WHERE student_no=? AND password=?";
+            
+            db.query(sql,[studNo, password], (err, result) => {
+                if(err) {
+                    console.log(err);
+                    res.sendStatus(500);
+                }
+                else {
+                    res.json(result);
+                }
+            });
+        }
+        catch(e) {
+            console.log(e);
+            res.sendStatus(500);
+        }
+    });
+
     //ADD
     app.post(baseUri + '/add', async (req, res) => {
     
@@ -80,7 +104,7 @@ module.exports = initStudent = (app) => {
             let fname = req.body.fname;
             let mname = req.body.mname;
             
-            let sql = "INSERT INTO students VALUES(?,?,?,?,?)";
+            let sql = "INSERT INTO students VALUES(?,?,?,?,?,'')";
             
             db.query(sql, [uuid,studNo,lname,fname,mname], (err, result) => {
                 if(err) {

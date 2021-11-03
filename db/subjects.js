@@ -76,11 +76,13 @@ module.exports = initSubject = (app) => {
         let code = req.body.code;
         let title = req.body.title;
         let description = req.body.description;
+        let written = req.body.written;
+        let perf = req.body.performance;
 
         try {
-            let sql = "INSERT INTO subjects VALUES(?,?,?,?)";
+            let sql = "INSERT INTO subjects VALUES(?,?,?,?,?,?)";
 
-            db.query(sql,[uuid, code, title, description], (err, result) => {
+            db.query(sql,[uuid, code, title, description, written, perf], (err, result) => {
                 if(err) {
                     console.log(err);
                     res.sendStatus(500);
@@ -103,11 +105,13 @@ module.exports = initSubject = (app) => {
         let code = req.body.code;
         let title = req.body.title;
         let description = req.body.description;
+        let written = req.body.written;
+        let perf = req.body.performance;
     
         try {
-            let sql = "UPDATE subjects SET code=?, title=?, description=? WHERE (uuid=?)";
+            let sql = "UPDATE subjects SET code=?, title=?, description=?, written=?, performance=? WHERE uuid=?";
 
-            db.query(sql,[code, title, description,uuid], (err, result) => {
+            db.query(sql,[code, title, description, written, perf, uuid], (err, result) => {
                 if(err) {
                     console.log(err);
                     res.sendStatus(500);

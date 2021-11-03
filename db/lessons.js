@@ -1,12 +1,35 @@
 const db = require("./connection");
 const baseUri = "/api/lesson";
+const UploadFile = require('../cloud/UploadFile');
+const DeleteFile = require("../cloud/DeleteFile");
 
 module.exports = initLesson = (app) => {
+
+    //Get All Lesson
+    app.get(baseUri + '/all', async (req, res) => {
+        try{
+            let sql = "SELECT lessons.*, subjects.title as subject_title FROM lessons INNER JOIN subjects ON lessons.subject=subjects.uuid ORDER BY date_uploaded DESC";
+
+            db.query(sql, (err, result) => {
+                if(err){
+                    console.log(err);
+                    res.sendStatus(500);
+                }
+                else{
+                    res.json(result);
+                }
+            });
+        }
+        catch(e){
+            console.log(e);
+            res.sendStatus(500);
+        }
+    });
 
     //Get Modules
     app.get(baseUri + '/modules', async (req, res) => {
         try{
-            let sql = "SELECT lessons.*, subjects.title as subject_title FROM lessons INNER JOIN subjects ON lessons.subject=subjects.uuid WHERE type='module' ORDER BY date_uploaded";
+            let sql = "SELECT lessons.*, subjects.title as subject_title FROM lessons INNER JOIN subjects ON lessons.subject=subjects.uuid WHERE type='module' ORDER BY date_uploaded DESC";
 
             db.query(sql, (err, result) => {
                 if(err){
@@ -27,7 +50,7 @@ module.exports = initLesson = (app) => {
     //Get Audios and Videos
     app.get(baseUri + '/medias', async (req, res) => {
         try{
-            let sql = "SELECT lessons.*, subjects.title as subject_title FROM lessons INNER JOIN subjects ON lessons.subject=subjects.uuid WHERE type='audio' OR type='video' ORDER BY date_uploaded";
+            let sql = "SELECT lessons.*, subjects.title as subject_title FROM lessons INNER JOIN subjects ON lessons.subject=subjects.uuid WHERE type='media' ORDER BY date_uploaded DESC" ;
 
             db.query(sql, (err, result) => {
                 if(err){
@@ -45,19 +68,28 @@ module.exports = initLesson = (app) => {
         }
     });
 
-    //Add Module
-    app.post(baseUri + '/module/add', async (req, res) => {
+    //Add Lesson
+    app.post(baseUri + '/add', async (req, res) => {
         try{
             let uuid = req.body.uuid;
             let name = req.body.name;
-            let uri = req.body.uri;
-            let description = req.body.description;
-            let dateUpload = req.body.dateUpload;
-            let subject = req.body.subject;
-            let type = 'module';
 
-            let sql = "INSERT INTO lessons VALUES(?,?,?,?,?,?,?)";
-            db.query(sql, [uuid, name, type, uri, description, dateUpload, subject], (err, result) => {
+            let description = req.body.description;
+            let dateUploaded = req.body.dateUploaded;
+            let subject = req.body.subject;
+            let type = req.body.type;
+
+            let file = req.files.file;
+''
+            let {url, bucketName} = await UploadFile(file, "lesson/"+subject+"/"+type);
+
+            if(url === 'error'){
+                res.sendStatus(500);
+                return;
+            }
+
+            let sql = "INSERT INTO lessons VALUES(?,?,?,?,?,?,?,?)";
+            db.query(sql, [uuid, name, type, description, dateUploaded, subject, url, bucketName], (err, result) => {
                 if(err){
                     console.log(err);
                     res.sendStatus(500);
@@ -73,74 +105,17 @@ module.exports = initLesson = (app) => {
         }
     });
 
-    //Add Audio
-    app.post(baseUri + '/audio/add', async (req, res) => {
-        try {
-            let uuid = req.body.uuid;
-            let name = req.body.name;
-            let uri = req.body.uri;
-            let description = req.body.description;
-            let dateUpload = req.body.dateUpload;
-            let subject = req.body.subject;
-            let type = 'audio';
-
-            let sql = "INSERT INTO lessons VALUES(?,?,?,?,?,?,?)";
-            db.query(sql, [uuid, name, type, uri, description, dateUpload, subject], (err, result) => {
-                if(err){
-                    console.log(err);
-                    res.sendStatus(500);
-                }
-                else{
-                    res.json(result);
-                }
-            });
-        } catch (e) {
-            console.log(e);
-            res.sendStatus(500);
-        }
-    });
-
-    //Add Video
-    app.post(baseUri + '/video/add', async (req, res) => {
-        try {
-            let uuid = req.body.uuid;
-            let name = req.body.name;
-            let uri = req.body.uri;
-            let description = req.body.description;
-            let dateUpload = req.body.dateUpload;
-            let subject = req.body.subject;
-            let type = 'video';
-
-            let sql = "INSERT INTO lessons VALUES(?,?,?,?,?,?,?)";
-            db.query(sql, [uuid, name, type, uri, description, dateUpload, subject], (err, result) => {
-                if(err){
-                    console.log(err);
-                    res.sendStatus(500);
-                }
-                else{
-                    res.json(result);
-                }
-            });
-        } catch (e) {
-            console.log(e);
-            res.sendStatus(500);
-        }
-    });
-
     //Update lesson
     app.post(baseUri + '/update', async (req, res) => {
         try{
             let uuid = req.body.uuid;
             let name = req.body.name;
-            let uri = req.body.uri;
             let description = req.body.description;
-            let dateUpload = req.body.dateUpload;
             let subject = req.body.subject;
-            let type = 'video';
 
-            let sql = "UPDATE lessons SET name=?, type=?, uri=?, description=?, date_uploaded=?, subject=? WHERE uuid=?";
+            let sql = "UPDATE lessons SET name=?, description=?, subject=? WHERE uuid=?";
             
-            db.query(sql, [name,type,uri,description,dateUpload,subject,uuid], (err, result) => {
+            db.query(sql, [name,description,subject,uuid], (err, result) => {
                 if(err){
                     console.log(err);
                     res.sendStatus(500);
@@ -160,17 +135,23 @@ module.exports = initLesson = (app) => {
     app.post(baseUri + '/delete', async (req, res) => {
         try {
             let uuid = req.body.uuid;
+            let bucketName = req.body.bucketName;
 
-            let sql = "DELETE FROM lessonsWHERE uuid=?";
-            db.query(sql, [uuid], (err, result) => {
-                if(err){
-                    console.log(err);
-                    res.sendStatus(500);
-                }
-                else{
-                    res.json(result);
-                }
-            });
+            let deleteRes = await DeleteFile(bucketName);
+            
+            if(deleteRes){
+                let sql = "DELETE FROM lessons WHERE uuid=?";
+                db.query(sql, [uuid], (err, result) => {
+                    if(err){
+                        console.log(err);
+                        res.sendStatus(500);
+                    }
+                    else{
+                        res.json(result);
+                    }
+                });
+            }
+            
         } catch (e) {
             console.log(e);
             res.sendStatus(500);
