@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sincere-torch-329413",
+  "private_key_id": "ac127d4c335a45cea90bd33e7c38d6a91ef40983",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCDOj07+cIPqE0/\nH9HE2lGubbwSgRHNYhRnBU9DXXqPwKIqNUMmhuis3xRgg1f77NYNXLmmSc+wDuWj\nySSAsRXlL05LK255DoY1lWxO53nHPYwg9JrkIR4rfmZ5zMxiGCBq9fQ2G07wtW8c\ndu7o3x+XjdiwlvVA+hudBNepVKzn+mBklMGW7ku/Bdiryd325RE203JsEW6dFxvl\nZpZAULFhM9xtyZfXIPLGCFrHCiogTOwfhCuo1OdJmFPAef6gdCq1ug73rZ+CQhq9\niI1FkmfhS1B61Kblu3AIoQASwDmctnExISnirBrkgwvgueSeblkfEVsQAyn9f5ck\njvkQu255AgMBAAECggEAHZWornfNR2hjGeMbkKzDk3aL2wQcNlhxTxSEXSSa+AOu\ny6M8Y1gw5qBYYLXbxSEM1PBdrl6fowqIvRcg0p6Z2BSFKy88dbBPk47/Xv6SlteK\nWveqX9oTiiyx/62rOkZEMLkIeJZJgrz0ss8hZ4C+B5XkD1PJMP/x78FiuXssjBO0\nuHu2E6Z2i2a/n1KKR6ohFN4ssD0/StMN6OtqeRMxmJKnZlbvxvIBRyddjUizLZCq\ncL48GD7vgxH/GF5A9aM01fwIvwXyzFV+tnRW7aIKWQ1oEnrclq8jGIec4C3naH/5\nEq4Ff1NkszTMeuhIFyDG+af7yO8GMWdYPJR4f7XZ7QKBgQC4Sgv9hmQMyFTNgQzg\nz12Og6FvcsrwIBxB1CE2LTXPRZpafsFe3kAOyXTBcONM2S+Ee722PbWjUPjd2yO8\nGFBFt/U7yVs5xmGGR+hu+6z10XSkEqpI5EyD+YBL3pNQBNrDN60Kb3YUGNqm+f/1\nqZvJqbSPo5MddP/y12y101EX9wKBgQC2SnO4wuzLy9rwWB0bMfPtYTOdBF2QWcQs\nfYn/v2xpEYdQrKXxujZKEm55JlxcXRIA/XaRlUbykiUQFCFFAunTMY9payklXF4/\nqgUklCQiJm/JQfG5uRUSApIvlwKOYRCeoQ1E8E+MUiwveKMvBdtX2Zjtb+OUjoBp\nECY/FBFxDwKBgAjdvx/uZEfdJ39PkyAJufWOTaj/+9V7pgBgxUxG9ozHS3rJGGKJ\nDMnpVU2tMbJTzJ5yGZl39JIr5h0+WsTE4q/H/utmb5Yi/jQop30XbKXS8uql3z1s\nhmXfDhYYWjwCT8gOmKuk2yhyXaqk4nSeOVmFaaNzejNzmpDDXn6M8RzXAoGBAKBA\nET0ydtKtshmpjGTU5BghZCs7pDj7AP8PmZovoNE47JjaPcOkLIevbliohXdZBjPC\nnlJbRZSHL3fUCm9NoVrc7bMB1pkWe3BCOeUvKhiva4QkqajYcRJ1Gigl+8RIxkB9\nWlnpXDUCI//TcLksz+eJzeuleg6lu3MhFE5NiQu3AoGAApHSbVgPcuOM5ezzzTui\nnpx2aAQp1DwKyNZWcEEQzzscvU3ZqeGY7CG4Cr21TmfuNOQJroswRiGUc9RgEyWL\nEpU5jG3kyHn9HMVQnIUswgwZBdK2MSECFXGv9A5Am7uOzMR2kCW0AJCyhqBvxnJb\nEu4NjmxY/CCfVyKp51OK4p4=\n-----END PRIVATE KEY-----\n",
+  "client_email": "pwu-thesis-service@sincere-torch-329413.iam.gserviceaccount.com",
+  "client_id": "115685771878176709607",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pwu-thesis-service%40sincere-torch-329413.iam.gserviceaccount.com"
+}
