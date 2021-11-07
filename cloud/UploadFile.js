@@ -10,7 +10,7 @@ const storage = new Storage({
 
 const bucket = storage.bucket('webmind-e-learning-system');
 
-module.exports = uploadFile = (file, folder) => new Promise((resolve, reject) => {
+module.exports = UploadFile = (file, folder) => new Promise((resolve, reject) => {
 
     let subString = file.name.split(".");
     let type = subString[subString.length-1];

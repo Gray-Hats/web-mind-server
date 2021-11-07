@@ -1,9 +1,9 @@
+
 const express = require('express');
 const fileUpload = require('express-fileupload');
 
 const app = express();
 const cors = require('cors');
-const config = require('./config');
 
 const initUsers = require('./db/users');
 
@@ -19,14 +19,19 @@ const initNotification = require('./db/notifications');
 
 const initStorage = require('./cloud/Storage');
 
-const http = require('http').createServer(app);
+// const http = require('http').createServer(app);
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static('build'));
 app.use(express.urlencoded({ 
     extended: true
 }));
 app.use(fileUpload());
+
+app.get('*', (req, res) => {
+    res.json("Webmind server is running...");
+})
 
 /*
 * PORT
@@ -35,19 +40,19 @@ app.use(fileUpload());
 //     console.log("Webmind server is running...");
 // })
 
-const io = require("socket.io")(http);
+// const io = require("socket.io")(http);
 
-http.listen(config.port,() => {
-    console.log("Successfully Connected Node Server");
+// http.listen(config.port,() => {
+//     console.log("Successfully Connected Node Server");
     
-     io.on("connection", function(socket){
-        console.log(socket)
+//      io.on("connection", function(socket){
+//         console.log(socket)
     
-        socket.on("sendNotification", function(details){
-            socket.broadcast.emit("sendNotification", details);
-        });
-    });
-});
+//         socket.on("sendNotification", function(details){
+//             socket.broadcast.emit("sendNotification", details);
+//         });
+//     });
+// });
 
 initUsers(app);
 

@@ -1,9 +1,9 @@
 module.exports = config = {
     mysqli: {
-        user: 'root',
-        host: 'localhost',
-        password: 'password',
+        user: 'airapacure',
+        password: 'Pa1713122000.',
+        host: 'server.webmindlearningsystem.online',
         database: 'web_mind_master',
     },
-    port: '3001',
+    port: '22'
 }
