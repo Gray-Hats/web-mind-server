@@ -22,7 +22,7 @@ function uploadFile($fileObj, $cloudPath) {
         $filename = $cloudPath."/".$prefix . "." . $file['extension'];
 
         $storage = new StorageClient([
-            'keyFilePath' => getcwd().'/cloud-config.json',
+            'keyFilePath' => getcwd().'/../cloud-config.json',
         ]);
         $bucket = $storage->bucket($bucketName);
 
@@ -53,7 +53,7 @@ function deleteFile($filename) {
     
     try {
         $storage = new StorageClient([
-            'keyFilePath' => getcwd().'/cloud-config.json',
+            'keyFilePath' => getcwd().'/../cloud-config.json',
         ]);
 
         $bucket = $storage->bucket($bucketName);
