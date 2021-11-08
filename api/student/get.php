@@ -9,11 +9,16 @@ if($uuid) {
         $sql = "SELECT * FROM students WHERE uuid='$uuid'";
         
         $result = $db->query($sql);
+        
+        $emparray = array();
+        while($row = $result->fetch_assoc()) {
+            $emparray[] = $row;
+        }
+        echo json_encode($emparray);
     }
     catch (exception $e) {
-        $result = false;
+        echo json_encode(false);
     }
-    echo json_encode($result);
 }
 else {
     echo json_encode(false);
