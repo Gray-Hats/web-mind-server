@@ -26,32 +26,30 @@
         }
 
         //GET NOTIFICATION COUNTS
-        else if($_POST['action'] == 'send') {
+        else if($_POST['action'] == 'count') {
 
             $emparray = array();
             try {
-                $sql = "SELECT COUNT(uuid) as count from notifications WHERE date_created > dateadd(dd,-3,cast(getdate() as date)) ORDER BY date_created DESC";
+                $sql = "SELECT COUNT(uuid) as count from notifications WHERE date_created > date_add(CURRENT_DATE, INTERVAL -3 DAY) ORDER BY date_created DESC";
                 
                 $result = $db->query($sql);
-            
-                while($row = $result->fetch_assoc()) {
-                    $emparray[] = $row;
+
+                $emparray = array();
+                if($result){
+                    while($row = $result->fetch_assoc()) {
+                        $emparray[] = $row;
+                    }
                 }
-
                 echo json_encode($emparray);
-
-                
             }
             catch (exception $e) {
-                $result = false;
-            }     
-                
-            echo json_encode($result);
+               echo json_encode(false);
+            }
 
         }
 
         //ADD NOTIFICATION
-        else if($_POST['action'] == 'delete') {
+        else if($_POST['action'] == 'add') {
 
             $uuid = $_POST['uuid'];
             $type = $_POST['type'];
@@ -69,5 +67,8 @@
             echo json_encode($result);
 
         }
+    }
+    else {
+        echo json_encode(false);
     }
 ?>

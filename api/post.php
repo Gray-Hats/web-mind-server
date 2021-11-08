@@ -9,7 +9,7 @@
 
             $emparray = array();
             try {
-                $sql = "SSELECT * from posts ORDER by date_uploaded DESC";
+                $sql = "SELECT * from posts ORDER by date_uploaded DESC";
 
                 $result = $db->query($sql);
             
@@ -84,5 +84,8 @@
             }
 
         }
+    }
+    else {
+        echo json_encode(false);
     }
 ?>

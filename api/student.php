@@ -157,12 +157,16 @@
                 $sql = "SELECT COUNT(uuid) as count from students";
                 
                 $result = $db->query($sql);
+
+                $emparray = array();
+                while($row = $result->fetch_assoc()) {
+                    $emparray[] = $row;
+                }
+                echo json_encode($emparray);
             }
             catch (exception $e) {
-                $result = 0;
+               echo json_encode(false);
             }
-                
-            echo json_encode($result);
         }
 
         //UPDATE PROFILE
@@ -195,5 +199,8 @@
             //     echo json_encode($uuid);
             // }
         }
+    }
+    else {
+        echo json_encode(false);
     }
 ?>

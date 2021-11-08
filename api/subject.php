@@ -134,12 +134,21 @@
                 $sql = "SELECT COUNT(uuid) as count from subjects";
                 
                 $result = $db->query($sql);
+
+                $emparray = array();
+                while($row = $result->fetch_assoc()) {
+                    $emparray[] = $row;
+                }
+                echo json_encode($emparray);
             }
             catch (exception $e) {
-                $result = 0;
+               echo json_encode(false);
             }
                 
-            echo json_encode($result);
+            
         }
+    }
+    else {
+        echo json_encode(false);
     }
 ?>
