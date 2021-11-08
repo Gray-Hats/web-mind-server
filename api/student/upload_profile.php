@@ -4,30 +4,40 @@ require_once('../config.php');
 require('../helper.php');
 
 $uuid = $_POST['uuid'];
-echo json_encode($uuid);
-// if($_FILES['image']) {
+$bucketName = $_POST['bucketName'];
 
-//     $result = uploadFile($_FILES, 'student/profile');
+if($_FILES['file']) {
 
-//     if($result) {
+    if($bucketName) {
+        $result = deleteFile($bucketName);
+    }
 
-//         try {
-//             $sql = "UPDATE students SET student_no='$studNo', lname='$lname', fname='$fname', mname='$mname' WHERE uuid='$uuid'";
+    $uploadRes = uploadFile($_FILES, 'student/profile');
+
+    if($uploadRes) {
+
+        try {
+            $sql = "UPDATE students SET profile_url='$result->url', profile_bucket_name='$result->bucket_name' WHERE uuid='$uuid'";
             
-//             $result = $db->query($sql);
-//         }
-//         catch (exception $e) {
-//             $result = false;
-//         }
-        
-//         echo json_encode($result);
-//     }
-//     else {
-//         echo json_encode(false);
-//     }
-// }
-// else {
-//     echo json_encode($uuid);
-// }
+            $result = $db->query($sql);
+            
+            if($result) {
+                echo json_encode($uploadRes);
+            }
+            else {
+                echo json_encode(false);
+            }
+        }
+        catch (exception $e) {
+            echo json_encode(false);
+        }
+    }
+    else {
+        echo json_encode(false);
+    }
+}
+else {
+    echo json_encode(false);
+}
 
 ?>

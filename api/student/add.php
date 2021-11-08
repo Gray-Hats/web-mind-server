@@ -11,7 +11,7 @@ $mname = $_POST['mname'];
 if($uuid && $studNo && $lname && $fname) {
 
     try {
-        $sql = "INSERT INTO students VALUES('$uuid','$studNo','$lname','$fname','$mname','student12345','')";
+        $sql = "INSERT INTO students VALUES('$uuid','$studNo','$lname','$fname','$mname','student12345','','')";
         
         $result = $db->query($sql);
     }

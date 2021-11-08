@@ -9,14 +9,19 @@ $dateSent = $_POST['dateSent'];
 $student = $_POST['student'];
 
 try {
-    $sql = "INSERT INTO messages VALUES('$uuid','$sender','$message','$dateSent','$student')";
+    if($student) {
+        $sql = "INSERT INTO messages VALUES('$uuid','$sender','$message','$dateSent','$student')";
+    }
+    else {
+        $sql = "INSERT INTO messages VALUES('$uuid','$sender','$message','$dateSent',null)";
+    }
     
     $result = $db->query($sql);
+    echo json_encode($sql);
 }
 catch (exception $e) {
-    $result = false;
+    echo json_encode(false);
 }     
     
-echo json_encode($result);
 
 ?>

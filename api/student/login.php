@@ -2,10 +2,10 @@
 
 require_once('../config.php');
 
-$studNo = $params['studNo'];
-$password = $params['password'];
+$studNo = $_POST['studNo'];
+$password = $_POST['password'];
 
-if($uuid && $password) {
+if($studNo && $password) {
 
     try {
         $sql = "SELECT * FROM students WHERE student_no='$studNo' AND password='$password'";
