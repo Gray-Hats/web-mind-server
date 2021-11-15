@@ -2,6 +2,11 @@
 
 require_once('../config.php');
 
+if(!isset($_POST['student'])) {
+    echo json_encode(false);
+    return;
+}
+
 $student = $_POST['student'];
 $subject = $_POST['subject'];
 $quarter = $_POST['quarter'];
