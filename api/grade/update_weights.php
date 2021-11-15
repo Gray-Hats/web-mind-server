@@ -4,8 +4,8 @@ require_once('../config.php');
 
 $subject = $_POST['subject'];
 $quarter = $_POST['quarter'];
-$written = "0,0,0,0";
-$performance = "0,0,0,0";
+$written = $_POST['written'];
+$performance = $_POST['performance'];
 
 try {
     $sql = "UPDATE weights SET written='$written', performance='$performance' WHERE subject='$subject' AND quarter=$quarter";
