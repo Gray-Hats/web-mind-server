@@ -12,7 +12,7 @@ try {
 
     $result = $db->query($sql);
 
-    echo json_encode($sql);
+    echo json_encode($result);
 }
 catch (exception $e) {
     echo json_encode(false);
