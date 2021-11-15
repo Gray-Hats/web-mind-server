@@ -9,7 +9,7 @@ $written = $_POST['written'];
 $wTotal = $_POST['wTotal'];
 $wPercentage = $_POST['wPercentage'];
 $wWeighted = $_POST['wWeighted'];
-$performace = $_POST['performace'];
+$performance = $_POST['performance'];
 $pTotal = $_POST['pTotal'];
 $pPercentage = $_POST['pPercentage'];
 $pWeighted = $_POST['pWeighted'];
@@ -21,7 +21,7 @@ $upload = uploadFile($_FILES, "student_works/$activity");
 if($upload) {
 
     try {
-        $sql = "INSERT INTO scores VALUES('$student','$subject',$quarter,'$written',$wTotal,$wPercentage,$wWeighted,'$performace',$pTotal,$pPercentage,$pWeighted,$initialGrade,$quarterlyGrade)";
+        $sql = "INSERT INTO scores VALUES('$student','$subject',$quarter,'$written',$wTotal,$wPercentage,$wWeighted,'$performance',$pTotal,$pPercentage,$pWeighted,$initialGrade,$quarterlyGrade)";
         
         $result = $db->query($sql);
     }

@@ -9,7 +9,7 @@ $written = $_POST['written'];
 $wTotal = $_POST['wTotal'];
 $wPercentage = $_POST['wPercentage'];
 $wWeighted = $_POST['wWeighted'];
-$performace = $_POST['performace'];
+$performance = $_POST['performance'];
 $pTotal = $_POST['pTotal'];
 $pPercentage = $_POST['pPercentage'];
 $pWeighted = $_POST['pWeighted'];
@@ -19,7 +19,7 @@ $quarterlyGrade = $_POST['quarterlyGrade'];
 if($uuid && $subject && $title) {
 
     try {
-        $sql = "UPDATE scores SET written='$written', written_total=$wTotal, written_ps=$wPercentage, written_ws=$wWeighted, performance='$performace', performance_total=$pTotal, performance_ps=$pPercentage, performance_ws=$pWeighted, initial_grade=$initialGrade, quarterly_grade=$quarterlyGrade WHERE student='$student' AND subject='$subject' AND quarter=$quarter";
+        $sql = "UPDATE scores SET written='$written', written_total=$wTotal, written_ps=$wPercentage, written_ws=$wWeighted, performance='$performance', performance_total=$pTotal, performance_ps=$pPercentage, performance_ws=$pWeighted, initial_grade=$initialGrade, quarterly_grade=$quarterlyGrade WHERE student='$student' AND subject='$subject' AND quarter=$quarter";
         
         $result = $db->query($sql);
     }
