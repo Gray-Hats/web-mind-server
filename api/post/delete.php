@@ -8,19 +8,20 @@ $bucketName = $_POST['bucketName'];
 
 $delete = deleteFile($bucketName);
 
-if($delete) {
-    try {
-        $sql = "DELETE FROM posts WHERE uuid='$uuid'";
+echo json_encode($delete);
+// if($delete) {
+//     try {
+//         $sql = "DELETE FROM posts WHERE uuid='$uuid'";
         
-        $result = $db->query($sql);
-    }
-    catch (exception $e) {
-        $result = false;
-    }
-    echo json_encode($result);
-}
-else {
-    echo json_encode(false);
-}
+//         $result = $db->query($sql);
+//     }
+//     catch (exception $e) {
+//         $result = false;
+//     }
+//     echo json_encode($result);
+// }
+// else {
+//     echo json_encode(false);
+// }
 
 ?>
