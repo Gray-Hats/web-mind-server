@@ -21,21 +21,14 @@ $pWeighted = $_POST['pWeighted'];
 $initialGrade = $_POST['initialGrade'];
 $quarterlyGrade = $_POST['quarterlyGrade'];
 
-if($uuid && $subject && $title) {
-
-    try {
-        $sql = "UPDATE scores SET written='$written', written_total=$wTotal, written_ps=$wPercentage, written_ws=$wWeighted, performance='$performance', performance_total=$pTotal, performance_ps=$pPercentage, performance_ws=$pWeighted, initial_grade=$initialGrade, quarterly_grade=$quarterlyGrade WHERE student='$student' AND subject='$subject' AND quarter=$quarter";
-        
-        $result = $db->query($sql);
-    }
-    catch (exception $e) {
-        $result = false;
-    }
+try {
+    $sql = "UPDATE scores SET written='$written', written_total=$wTotal, written_ps=$wPercentage, written_ws=$wWeighted, performance='$performance', performance_total=$pTotal, performance_ps=$pPercentage, performance_ws=$pWeighted, initial_grade=$initialGrade, quarterly_grade=$quarterlyGrade WHERE student='$student' AND subject='$subject' AND quarter=$quarter";
     
-    echo json_encode($result);
+    $result = $db->query($sql);
 }
-else {
-    echo json_encode(false);
+catch (exception $e) {
+    $result = false;
 }
 
+echo json_encode($result);
 ?>
