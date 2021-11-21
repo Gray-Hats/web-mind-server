@@ -2,6 +2,11 @@
 
 require_once('../config.php');
 
+if(!isset($_POST['uuid'])) {
+    echo json_encode(false);
+    return;
+}
+
 $uuid = $_POST['uuid'];
 $code = $_POST['code'];
 $title = $_POST['title'];
@@ -20,7 +25,7 @@ if($uuid && $studNo && $lname && $fname) {
         $result = false;
     }
     
-    echo json_encode($result);
+    echo json_encode($sql);
 }
 else {
     echo json_encode(false);
