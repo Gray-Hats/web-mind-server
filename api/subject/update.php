@@ -15,7 +15,7 @@ $written = $_POST['written'];
 $performance = $_POST['performance'];
 
 try {
-    $sql = "UPDATE subjects SET code='$code', title='$title', description='$description', written=$written, performance=$performance WHERE uuid='$uuid'";
+    $sql = "UPDATE subjects SET code='$code', title='$title', description='$description', written_range=$written, performance_range=$performance WHERE uuid='$uuid'";
     
     $result = $db->query($sql);
 }
@@ -23,5 +23,5 @@ catch (exception $e) {
     $result = false;
 }
 
-echo json_encode($sql);
+echo json_encode($result);
 ?>
