@@ -7,11 +7,12 @@ $studNo = $_POST['studNo'];
 $lname = $_POST['lname'];
 $fname = $_POST['fname'];
 $mname = $_POST['mname'];
+$password = $_POST['password'];
 
 if($uuid && $studNo && $lname && $fname) {
 
     try {
-        $sql = "INSERT INTO students VALUES('$uuid','$studNo','$lname','$fname','$mname','qhs020033','','')";
+        $sql = "INSERT INTO students VALUES('$uuid','$studNo','$lname','$fname','$mname','$password','','','')";
         
         $result = $db->query($sql);
     }
