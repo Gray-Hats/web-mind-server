@@ -44,16 +44,14 @@ if($uuid && $password) {
 
         $mail->Send();
      
-        // if($mail->Send())
-        // {
-        //  echo '<script>alert("Please Check Your Email for Verification Code")</script>';
-     
-        //  header('location:email_verify.php?code='.$user_activation_code);
-        // }
-        // else
-        // {
-        //  $message = $mail->ErrorInfo;
-        // }
+        if($mail->Send())
+        {
+            $result = 'Sent Success';
+        }
+        else
+        {
+            $result = 'Failed to Sent';
+        }
     }
     catch (exception $e) {
         $result = false;
