@@ -18,16 +18,16 @@ $password = $_POST['password'];
 if($uuid && $studNo && $lname && $fname && $email) {
 
     try {
-        $sql = "INSERT INTO students VALUES('$uuid','$studNo','$lname','$fname','$mname','$email','$password','','','')";
+        $sql = "INSERT INTO students VALUES('$uuid','$studNo','$lname','$fname','$mname','$email','$password','','','','')";
         
         $result = $db->query($sql);
     }
     catch (exception $e) {
-        $result = $e;
+        $result = false;
     }
     
         
-    echo json_encode($sql);
+    echo json_encode($result);
 }
 else {
     echo json_encode(false);
