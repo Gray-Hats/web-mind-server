@@ -34,7 +34,7 @@ try {
     // $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom($emailFrom, 'Mailer');
+    $mail->setFrom($emailFrom, 'Web Mind');
     $mail->addAddress($emailTo);               //Name is optional
 
     //Content

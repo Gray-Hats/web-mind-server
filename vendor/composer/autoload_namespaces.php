@@ -6,6 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Mockery' => array($vendorDir . '/mockery/mockery/library'),
-    'Mailjet' => array($vendorDir . '/mailjet/mailjet-apiv3-php/src'),
 );
