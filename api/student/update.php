@@ -12,7 +12,7 @@ $email = $_POST['email'];
 if($uuid && $studNo && $lname && $fname) {
 
     try {
-        $sql = "UPDATE students SET student_no='$studNo', lname='$lname', fname='$fname', mname='$mname' email='$email' WHERE uuid='$uuid'";
+        $sql = "UPDATE students SET student_no='$studNo', lname='$lname', fname='$fname', mname='$mname', email='$email' WHERE uuid='$uuid'";
         
         $result = $db->query($sql);
     }
