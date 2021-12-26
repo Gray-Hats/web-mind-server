@@ -36,9 +36,9 @@ try {
     $mail->AltBody = 'Hi! Someone tried to login to your Web Mind e-Learning Account. If this was you, please use this following code to log in:'.$code;
 
     $mail->send();
-    echo 'Message has been sent.</br>From: '.$emailFrom.'</br>To:'.$emailTo;
+    echo json_encode(true);
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    echo json_encode(false);
 }
 
 ?>
