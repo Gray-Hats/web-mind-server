@@ -1,23 +1,35 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => 'f39ee4aa44747304e81c4ef697af2c9b871b5a15',
         'name' => '__root__',
         'dev' => true,
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'f39ee4aa44747304e81c4ef697af2c9b871b5a15',
             'dev_requirement' => false,
+        ),
+        'cordoval/hamcrest-php' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '*',
+            ),
+        ),
+        'davedevelopment/hamcrest-php' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '*',
+            ),
         ),
         'firebase/php-jwt' => array(
             'pretty_version' => 'v5.5.0',
@@ -89,6 +101,39 @@
             'install_path' => __DIR__ . '/../guzzlehttp/psr7',
             'aliases' => array(),
             'reference' => '089edd38f5b8abba6cb01567c2a8aaa47cec4c72',
+            'dev_requirement' => false,
+        ),
+        'hamcrest/hamcrest-php' => array(
+            'pretty_version' => 'v2.0.1',
+            'version' => '2.0.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../hamcrest/hamcrest-php',
+            'aliases' => array(),
+            'reference' => '8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
+            'dev_requirement' => false,
+        ),
+        'kodova/hamcrest-php' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '*',
+            ),
+        ),
+        'mailjet/mailjet-apiv3-php' => array(
+            'pretty_version' => 'v1.5.5',
+            'version' => '1.5.5.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../mailjet/mailjet-apiv3-php',
+            'aliases' => array(),
+            'reference' => 'c1c1931c76ebd1adb5cf2a76f60ddcaa61849aa2',
+            'dev_requirement' => false,
+        ),
+        'mockery/mockery' => array(
+            'pretty_version' => '1.4.4',
+            'version' => '1.4.4.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../mockery/mockery',
+            'aliases' => array(),
+            'reference' => 'e01123a0e847d52d186c5eb4b9bf58b0c6d00346',
             'dev_requirement' => false,
         ),
         'monolog/monolog' => array(

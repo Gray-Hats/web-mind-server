@@ -1,7 +1,7 @@
 <?php
 
 require_once('../config.php');
-require('../../class/class.phpmailer.php');
+require '../../vendor/autoload.php';
 
 if(!isset($_POST['uuid'])) {
     echo json_encode(false);
@@ -13,45 +13,38 @@ $ipAddress = $_POST['ipAddress'];
 $browser = $_POST['browser'];
 $email = $_POST['email'];
 
+
+use \Mailjet\Resources;
+$mj = new \Mailjet\Client('3a840627baeb8107ea25b067894b89d9','c6bf678eca112784bf73b84c53544a25',true,['version' => 'v3.1']);
+$body = [
+'Messages' => [
+    [
+    'From' => [
+        'Email' => "edalwampo20@gmail.com",
+        'Name' => "Emerson"
+    ],
+    'To' => [
+        [
+        'Email' => "emersondalwampo1120@gmail.com",
+        'Name' => "Emerson"
+        ]
+    ],
+    'Subject' => "Greetings from Mailjet.",
+    'TextPart' => "My first Mailjet email",
+    'HTMLPart' => "<h3>Dear passenger 1, welcome to <a href='https://www.mailjet.com/'>Mailjet</a>!</h3><br />May the delivery force be with you!",
+    'CustomID' => "AppGettingStartedTest"
+    ]
+]
+];
+$response = $mj->post(Resources::$Email, ['body' => $body]);
+$response->success() && var_dump($response->getData());
+
 if($uuid && $password) {
 
     try {
         $sql = "UPDATE students SET ip='$ipAddress', browser='$browser' WHERE uuid='$uuid'";
         
         $result = $db->query($sql);
-
-        $mail = new PHPMailer;
-        $mail->IsSMTP();
-        $mail->Host = 'smtpout.secureserver.net';
-        $mail->Port = '80';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'xxxxxxxxxxxxxx';
-        $mail->Password = 'xxxxxxxxxxxxxx';
-        $mail->SMTPSecure = '';
-        $mail->From = 'edalwampo20@gmail.com';
-        $mail->FromName = 'Webslesson';
-        $mail->AddAddress('emersondalwampo1120@gmail.com');
-        $mail->WordWrap = 50;
-        $mail->IsHTML(true);
-        $mail->Subject = 'Verification code for Verify Your Email Address';
-     
-        $message_body = '
-        <p>For verify your email address, enter this verification code when prompted: <b>AAAA</b>.</p>
-        <p>Sincerely,</p>
-        <p>Webslesson.info</p>
-        ';
-        $mail->Body = $message_body;
-
-        $mail->Send();
-     
-        if($mail->Send())
-        {
-            $result = 'Sent Success';
-        }
-        else
-        {
-            $result = 'Failed to Sent';
-        }
     }
     catch (exception $e) {
         $result = false;
