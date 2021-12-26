@@ -19,13 +19,13 @@ use PHPMailer\PHPMailer\Exception;
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
-$emailFrom = 'edalwampo20@gmai.com';
+$emailFrom = 'admin@webmind.com';
 $emailTo = 'emersondalwampo1120@gmail.com';
 
 try {
     //Server settings
     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
+    // $mail->isSMTP();                                            //Send using SMTP
     // $mail->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
     // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     // $mail->Username   = 'user@example.com';                     //SMTP username
