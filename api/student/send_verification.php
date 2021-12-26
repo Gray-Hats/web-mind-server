@@ -3,16 +3,13 @@
 require_once('../config.php');
 require '../../vendor/autoload.php';
 
-// if(!isset($_POST['email'])) {
-//     echo json_encode(false);
-//     return;
-// }
+if(!isset($_POST['email'])) {
+    echo json_encode(false);
+    return;
+}
 
-// $code = $_POST['code'];
-// $emailTo = $_POST['email'];
-
-$code = '123456';
-$emailTo = 'emersondalwampo1120@gmail.com';
+$code = $_POST['code'];
+$emailTo = $_POST['email'];
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
