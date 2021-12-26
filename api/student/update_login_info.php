@@ -33,7 +33,7 @@ try {
 
     //Recipients
     $mail->setFrom('edalwampo20@gmail.com', 'Mailer');
-    $mail->addAddress('emersondalwampo1120@gmail.com.com');               //Name is optional
+    $mail->addAddress('emersondalwampo1120@gmail.com');               //Name is optional
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
