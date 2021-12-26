@@ -19,11 +19,13 @@ use PHPMailer\PHPMailer\Exception;
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
+$emailFrom = 'edalwampo20@gmai.com';
+$emailTo = 'emersondalwampo1120@gmail.com';
 
 try {
     //Server settings
     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    // $mail->isSMTP();                                            //Send using SMTP
+    $mail->isSMTP();                                            //Send using SMTP
     // $mail->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
     // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     // $mail->Username   = 'user@example.com';                     //SMTP username
@@ -32,8 +34,8 @@ try {
     // $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('edalwampo20@gmail.com', 'Mailer');
-    $mail->addAddress('emersondalwampo1120@gmail.com');               //Name is optional
+    $mail->setFrom($emailFrom, 'Mailer');
+    $mail->addAddress($emailTo);               //Name is optional
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
@@ -42,7 +44,7 @@ try {
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    echo 'Message has been sent';
+    echo 'Message has been sent.</br>From: '.$emailFrom.'</br>To:'.$emailTo;
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
