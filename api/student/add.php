@@ -27,7 +27,7 @@ if($uuid && $studNo && $lname && $fname && $email) {
     }
     
         
-    echo json_encode($result);
+    echo json_encode($sql);
 }
 else {
     echo json_encode(false);
