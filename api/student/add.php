@@ -2,6 +2,11 @@
 
 require_once('../config.php');
 
+if(!isset($_POST['uuid'])) {
+    echo json_encode(false);
+    return;
+}
+
 $uuid = $_POST['uuid'];
 $studNo = $_POST['studNo'];
 $lname = $_POST['lname'];
@@ -10,7 +15,7 @@ $mname = $_POST['mname'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-if($uuid && $studNo && $lname && $fname) {
+if($uuid && $studNo && $lname && $fname && $email) {
 
     try {
         $sql = "INSERT INTO students VALUES('$uuid','$studNo','$lname','$fname','$mname','$email','$password','','','')";
