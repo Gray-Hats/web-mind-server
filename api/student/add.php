@@ -23,7 +23,7 @@ if($uuid && $studNo && $lname && $fname && $email) {
         $result = $db->query($sql);
     }
     catch (exception $e) {
-        $result = false;
+        $result = $e;
     }
     
         
